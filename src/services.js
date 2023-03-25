@@ -1,6 +1,6 @@
-export const search = async () => {
+export const search = async (input) => {
   let response = await fetch(
-    `https://api.discogs.com/database/search?q=Nirvana`,
+    `https://api.discogs.com/database/search?q=${input}&{?title,release_title,artist}`,
     {
       headers: {
         Authorization: "Discogs token=naLZrQwSiepVEgdldAJfdwVpLkSQCmxPGSUItYyq",
@@ -10,7 +10,6 @@ export const search = async () => {
     .then((response) => response.json())
     .then((data) => {
       return data.results;
-      //setResult(data.results);
     })
     .catch((error) => console.log(error));
 

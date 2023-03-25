@@ -1,15 +1,14 @@
 import "./Main.css";
 import Card from "./Card";
 import Notification from "./Notification";
-import BtnSearch from "./bnt/BtnSearch";
 import React from "react";
 import { AppContext } from "../resultContext";
+
 const Main = () => {
   const {result} = React.useContext(AppContext);
 
   return (
     <main className="main">
-        <BtnSearch />
       {result.length > 0 ? (
         result.map((e, index) => {
           return (

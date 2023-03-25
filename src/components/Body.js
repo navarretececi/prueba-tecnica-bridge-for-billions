@@ -5,7 +5,6 @@ const Body = ({children}) => {
     <div className="body">
       <h1>Prueba técnica Bridge For Billions</h1>
       {children}
-      
     </div>
   );
 };

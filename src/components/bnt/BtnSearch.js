@@ -6,27 +6,24 @@ import { search } from "../../services";
 
 const BtnSearch = () => {
   const [input, setInput] = useState("");
-  const { result, setResult } = React.useContext(AppContext);
+  const { setResult } = React.useContext(AppContext);
 
   const handlerInput = (e) => {
     setInput(e.target.value);
   };
-  console.log("input: ",input);
+  console.log("input: ", input);
 
-  const handlerSearch = () => {
-    search()
-   .then((data) =>{
-    console.log("data",data);
-      setResult(data);
-      setInput("");
-      console.log("click set");
-   } ) 
-    .catch ((error)=> {
-      console.log(error);
-      console.log("click error");
-    } )
-  }
- 
+  const handlerSearch = (input) => {
+    search(input)
+      .then((data) => {
+        console.log("data", data);
+        setResult(data);
+        setInput("");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="container_search">

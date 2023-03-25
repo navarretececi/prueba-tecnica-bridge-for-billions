@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const Card = (props) => {
   const [showInfo, setShowInfo] = useState(false);
-  const [styles, setStyles] = useState();
 
   const handlerShowInfo = (id) => {
     let btn = document.getElementById(id);
@@ -16,7 +15,6 @@ const Card = (props) => {
 
   return (
     <div className="card">
-      {/* {console.log("estilos",props.styles)} */}
       <Btn
         id={`btn_${props.id}`}
         btn_text="More info"
