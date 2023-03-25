@@ -1,44 +1,53 @@
-import './Main.css'
-import Card from './Card';
+import "./Main.css";
+import Card from "./Card";
+import Notification from "./Notification";
 import { useState, useEffect } from "react";
 
 const Main = () => {
-    const [disks, setDisks] = useState([]);
+  const [result, setResult] = useState([]);
 
-    useEffect(() => {
-      fetch(`
-          https://api.discogs.com/artists/1/releases?page=2&per_page=75
-        `)
-        .then((response) => response.json())
-        .then((data) => {
-          setDisks(data.releases);
-          console.log("data", data);
-          console.log("length RELEASES", data.releases.length);
-          console.log("data.releases", data.releases);
-        })
-        .catch((error) => console.log(error));
-    }, []);
+  useEffect(() => {
+    fetch(`https://api.discogs.com/database/search?q=Nirvana`, {
+      headers: {
+        Authorization: "Discogs token=naLZrQwSiepVEgdldAJfdwVpLkSQCmxPGSUItYyq",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setResult(data.results);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  console.log("result", result);
 
   return (
     <main className="main">
-      {disks.length > 0
-        ? disks.map((disk) => {
-            return (
-              <Card
-                id={disk.id}
-                title={disk.title}
-                artist={disk.artist}
-                format={disk.format}
-                role={disk.role}
-                type={disk.type}
-                trackinfo={disk.trackinfo}
-                year={disk.year}
-              />
-            );
-          })
-        : null}
+      {result.length > 0 ? (
+        result.map((e, index) => {
+          return (
+            <Card
+              //The index is used instead of the ID because I found some repeated ids.
+              key={index}
+              title={e.title}
+              url={e.thumb}
+              artist={e.artist}
+              format={e.format}
+              genre={e.genre}
+              label={e.label}
+              type={e.type}
+              trackinfo={e.trackinfo}
+              year={e.year}
+              country={e.country}
+              style={e.style}
+            />
+          );
+        })
+      ) : (
+        <Notification notification="Please search for results" />
+      )}
     </main>
   );
 };
 
-export default Main
+export default Main;
