@@ -1,28 +1,15 @@
 import "./Main.css";
 import Card from "./Card";
 import Notification from "./Notification";
-import { useState, useEffect } from "react";
-
+import BtnSearch from "./bnt/BtnSearch";
+import React from "react";
+import { AppContext } from "../resultContext";
 const Main = () => {
-  const [result, setResult] = useState([]);
-
-  useEffect(() => {
-    fetch(`https://api.discogs.com/database/search?q=Nirvana`, {
-      headers: {
-        Authorization: "Discogs token=naLZrQwSiepVEgdldAJfdwVpLkSQCmxPGSUItYyq",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setResult(data.results);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  console.log("result", result);
+  const {result} = React.useContext(AppContext);
 
   return (
     <main className="main">
+        <BtnSearch />
       {result.length > 0 ? (
         result.map((e, index) => {
           return (
