@@ -6,7 +6,9 @@ const Card = (props) => {
   const [showInfo, setShowInfo] = useState(false);
 
   const handlerShowInfo = (id) => {
+    console.log(id)
     let btn = document.getElementById(id);
+    console.log(btn)
     if (btn.innerText === "More info") {
       btn.innerText = "Hide info";
     } else btn.innerText = "More info";

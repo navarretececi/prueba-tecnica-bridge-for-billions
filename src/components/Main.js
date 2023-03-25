@@ -15,6 +15,7 @@ const Main = () => {
             <Card
               //The index is used instead of the ID because I found some repeated ids.
               key={index}
+              id={e.id}
               title={e.title}
               url={e.thumb}
               artist={e.artist}
