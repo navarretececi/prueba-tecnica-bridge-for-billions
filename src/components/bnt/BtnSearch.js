@@ -6,18 +6,18 @@ import { search } from "../../services";
 
 const BtnSearch = () => {
   const [input, setInput] = useState("");
-  const { setResult } = React.useContext(AppContext);
+  const { result, setResult, setData } = React.useContext(AppContext);
 
   const handlerInput = (e) => {
     setInput(e.target.value);
   };
-  console.log("input: ", input);
-
-  const handlerSearch = (input) => {
+  console.log("result", result);
+  const handlerSearch = () => {
     search(input)
       .then((data) => {
         console.log("data", data);
-        setResult(data);
+        setData(data);
+        setResult(data.results);
         setInput("");
       })
       .catch((error) => {
@@ -29,6 +29,7 @@ const BtnSearch = () => {
     <div className="container_search">
       <input
         id="searchbox"
+        className="input"
         autoComplete="off"
         value={input}
         onChange={handlerInput}
