@@ -1,4 +1,22 @@
 .container_search {
   display: flex;
   flex-direction: row;
+  width: max-content;
+  background: var(--white);
+  height: 25px;
+  align-items: center;
+  margin-right: 2px;
 }
+
+.input{
+  font-size: 15px;
+  border: none;
+  min-width: 250px;
+  padding: 5px 0 5px 10px;
+}
+
+.input:focus-visible{
+  outline: 0.5px solid var(--green);
+}
+
+

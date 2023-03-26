@@ -3,7 +3,7 @@
   height: max-content;
   min-height: 140px;
   margin: 1.5%;
-  border: 3px solid rgba(241, 241, 241, 0.932);
+  border: 3px solid var(--lightGrey);
   border-radius: 15px;
   padding: 0.5% 1%;
 }
@@ -18,4 +18,10 @@
 .img{
   width: 90px;
   height: 90px;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

@@ -1,8 +1,30 @@
 .body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-width: 100vh;
   min-height: 100vh;
+}
+
+.title {
+  text-align: initial;
+  width: 98%;
+  padding-left: 3%;
+}
+
+.pagination {
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  padding: 2%;
+  background: var(--green);
+  color: var(--white);
+}
+
+@media (max-width: 750px) {
+  .title {
+    font-size: 26px;
+  }
 }
