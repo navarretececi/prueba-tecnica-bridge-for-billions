@@ -4,11 +4,11 @@ import React from "react";
 export const AppContext = React.createContext();
 
 export const AppProvider = ({ children }) => {
-  const [data, setData] = useState({});
+  const [pagination, setPagination] = useState({});
   const [result, setResult] = useState([]);
 
   return (
-    <AppContext.Provider value={{ data, setData, result, setResult }}>
+    <AppContext.Provider value={{ pagination, setPagination, result, setResult }}>
       {children}
     </AppContext.Provider>
   );

@@ -6,7 +6,7 @@ import { search } from "../../services";
 
 const BtnSearch = () => {
   const [input, setInput] = useState("");
-  const { result, setResult, setData } = React.useContext(AppContext);
+  const { result, setResult, setPagination } = React.useContext(AppContext);
 
   const handlerInput = (e) => {
     setInput(e.target.value);
@@ -16,7 +16,7 @@ const BtnSearch = () => {
     search(input)
       .then((data) => {
         console.log("data", data);
-        setData(data);
+        setPagination(data.pagination);
         setResult(data.results);
         setInput("");
       })
