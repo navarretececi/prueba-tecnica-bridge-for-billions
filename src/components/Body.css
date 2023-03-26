@@ -6,13 +6,17 @@
   overflow-x: hidden;
 }
 
-.title {
+.header{
   text-align: initial;
   width: 98%;
-  padding-left: 3%;
+  padding: 3%;
 }
 
-.pagination {
+.no_mg {
+  margin: 0;
+}
+
+.footer {
   width: -webkit-fill-available;
   display: flex;
   justify-content: flex-end;
@@ -27,6 +31,6 @@
 
 @media (max-width: 750px) {
   .title {
-    font-size: 26px;
+    font-size: 20px;
   }
 }

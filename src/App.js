@@ -12,13 +12,13 @@ function App() {
   return (
     <div className="App">
        <Body>
-        <header className="header">
+        <nav className="nav">
           <BtnSearch />
           <Btn 
             btn_text="Clear search"
             onClick={()=>setResult([])}
           />
-        </header>
+        </nav>
         <Main />
        </Body>
     </div>
