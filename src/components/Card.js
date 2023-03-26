@@ -6,9 +6,7 @@ const Card = (props) => {
   const [showInfo, setShowInfo] = useState(false);
 
   const handlerShowInfo = (id) => {
-    console.log(id)
     let btn = document.getElementById(id);
-    console.log(btn)
     if (btn.innerText === "More info") {
       btn.innerText = "Hide info";
     } else btn.innerText = "More info";
@@ -17,11 +15,24 @@ const Card = (props) => {
 
   return (
     <div className="card">
-      <Btn
-        id={`btn_${props.id}`}
-        btn_text="More info"
-        onClick={() => handlerShowInfo(`btn_${props.id}`)}
-      />
+      <div className="row">
+        <div className="row">
+          <Btn
+            btn_text="+"
+            onClick={() => console.log("agregado")}
+          />
+          <Btn
+            btn_text="-"
+            onClick={() => console.log("eliminado")}
+          />
+        </div>
+        <Btn
+          id={`btn_${props.id}`}
+          btn_text="More info"
+          onClick={() => handlerShowInfo(`btn_${props.id}`)}
+        />
+      </div>
+      
       <div className="principal_info">
         <h5>{props.title}</h5>
         {props.url ?<img className="img" src={props.url} alt="photo disk"></img> : null}
