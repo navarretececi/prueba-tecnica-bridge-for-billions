@@ -1,6 +1,6 @@
-export const search = async (input) => {
-  let response = await fetch(
-    `https://api.discogs.com/database/search?title=${input}&per_page=16&page=10`,
+export const search = async (url) => {
+  console.log("url", url)
+  let response = await fetch(url,
     {
       headers: {
         Authorization: "Discogs token=naLZrQwSiepVEgdldAJfdwVpLkSQCmxPGSUItYyq",

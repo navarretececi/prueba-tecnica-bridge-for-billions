@@ -1,25 +1,68 @@
 import React from "react";
 import Btn from "./bnt/Btn";
 import { AppContext } from "../resultContext";
-//import { AppContext } from "../../context/AppContext";
+import { search } from "../services";
 
 const Pagination = () => {
-  //const { paginationList } = useContext(AppContext);
-  const { result, setResult, pagination, setPagination } = React.useContext(AppContext);
-  console.log("pagination",  pagination)
+  const { setResult, pagination, setPagination } = React.useContext(AppContext);
+  let firstPage;
+  let nextPage;
+  let prevPage;
+  let lastPage;
+
+  console.log("pagination", pagination);
+
+  const handlerPagination = (url) => {
+    console.log(url);
+    search(url)
+      .then((data) => {
+        console.log("data", data);
+        setPagination(data.pagination);
+        setResult(data.results);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  if (pagination && pagination.urls) {
+    if (pagination.urls.first) {
+      firstPage = pagination.urls.first;
+    }
+    if (pagination.urls.prev) {
+      prevPage = pagination.urls.prev;
+    }
+    if (pagination.urls.next) {
+      nextPage = pagination.urls.next;
+    }
+    if (pagination.urls.last) {
+      lastPage = pagination.urls.last;
+    }
+  }
 
   return (
     <div className="row">
-      {/* {paginationList.currentPage > 1 ? (
-        <button onClick={() => paginationList.prev()} >{`<`}</button>
+      <Btn
+        onClick={firstPage ? () => handlerPagination(firstPage) : ""}
+        btn_text={`<<`}
+      />
+      <Btn
+        onClick={prevPage ? () => handlerPagination(prevPage) : ""}
+        btn_text={`<`}
+      />
+      {pagination.urls ? (
+        <span>
+          page {pagination.page} de {pagination.pages}
+        </span>
       ) : null}
-      {paginationList.currentPage !== paginationList.maxPage ? (
-        <button onClick={() => paginationList.next()} >{`>`}</button>
-      ) : null} */}
-      <Btn onClick={()=>console.log(pagination.urls.first)} btn_text={`<<`} />
-      <Btn btn_text={`<`} />
-      <Btn btn_text={`>`} />
-      <Btn btn_text={`>>`} />
+      <Btn
+        onClick={nextPage ? () => handlerPagination(nextPage) : null}
+        btn_text={`>`}
+      />
+      <Btn
+        onClick={lastPage ? () => handlerPagination(lastPage) : ""}
+        btn_text={`>>`}
+      />
     </div>
   );
 };

@@ -12,8 +12,11 @@ const BtnSearch = () => {
     setInput(e.target.value);
   };
   console.log("result", result);
+
   const handlerSearch = () => {
-    search(input)
+    //Search by title: Search by combined “Artist Name - Release Title” title field.
+    let url= `https://api.discogs.com/database/search?title=${input}&per_page=16&page=1`
+    search(url)
       .then((data) => {
         console.log("data", data);
         setPagination(data.pagination);
