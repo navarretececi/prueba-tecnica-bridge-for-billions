@@ -54,7 +54,7 @@ const Pagination = () => {
       />
       {pagination.urls ? (
         <span>
-          page {pagination.page} de {pagination.pages}
+          page {pagination.page} of {pagination.pages}
         </span>
       ) : null}
       <Btn

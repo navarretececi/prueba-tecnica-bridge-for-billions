@@ -1,12 +1,12 @@
 import "./BtnSearch.css";
 import Btn from "./Btn";
-import React, { useState } from "react";
+import React from "react";
 import { AppContext } from "../../resultContext";
 import { search } from "../../services";
 
 const BtnSearch = () => {
-  const [input, setInput] = useState("");
-  const { result, setResult, setPagination } = React.useContext(AppContext);
+  const { input, setInput, result, setResult, setPagination } =
+    React.useContext(AppContext);
 
   const handlerInput = (e) => {
     setInput(e.target.value);
@@ -15,7 +15,7 @@ const BtnSearch = () => {
 
   const handlerSearch = () => {
     //Search by title: Search by combined “Artist Name - Release Title” title field.
-    let url= `https://api.discogs.com/database/search?title=${input}&per_page=16&page=1`
+    let url = `https://api.discogs.com/database/search?title=${input}&per_page=16&page=1`;
     search(url)
       .then((data) => {
         console.log("data", data);

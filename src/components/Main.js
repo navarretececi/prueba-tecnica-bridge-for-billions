@@ -5,11 +5,14 @@ import React from "react";
 import { AppContext } from "../resultContext";
 
 const Main = () => {
-  const {result} = React.useContext(AppContext);
+  const { result } = React.useContext(AppContext);
 
+  console.log("noResult ccc", result);
   return (
     <main className="main">
-      {result.length > 0 ? (
+      {result === undefined ? (
+        <Notification notification="Please search for results" />
+      ) : result.length > 0 ? (
         result.map((e, index) => {
           return (
             <Card
@@ -31,7 +34,7 @@ const Main = () => {
           );
         })
       ) : (
-        <Notification notification="Please search for results" />
+        <Notification notification="No results found" />
       )}
     </main>
   );
