@@ -7,7 +7,6 @@ import { AppContext } from "../resultContext";
 const Main = () => {
   const { result } = React.useContext(AppContext);
 
-  console.log("noResult ccc", result);
   return (
     <main className="main">
       {result === undefined ? (

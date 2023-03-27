@@ -5,7 +5,7 @@ const Layout = ({children}) => {
  return (
     <div className="layout">
       <header className="header">
-        <h1 className="no_mg title">Prueba técnica Bridge For Billions</h1>
+        <h1 className="no_mg principal_title">Prueba técnica Bridge For Billions</h1>
         <h6 className="no_mg">By: Cecilia Navarrete</h6>
       </header>
       {children}
