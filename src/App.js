@@ -1,26 +1,31 @@
 import './App.css'
 import Btn from './components/bnt/Btn';
 import BtnSearch from './components/bnt/BtnSearch';
-import Body from './components/Body.js'
+import Layout from './components/Layout.js'
 import Main from './components/Main';
 import React from "react";
 import { AppContext } from './resultContext';
 
 function App() {
-  const { setResult } = React.useContext(AppContext);
+  const { setResult, setPagination } = React.useContext(AppContext);
+
+  const handlerClear =()=>{
+    setResult([])
+    setPagination({})
+  }
 
   return (
     <div className="App">
-       <Body>
+       <Layout>
         <nav className="nav">
           <BtnSearch />
           <Btn 
             btn_text="Clear search"
-            onClick={()=>setResult([])}
+            onClick={()=>handlerClear()}
           />
         </nav>
         <Main />
-       </Body>
+       </Layout>
     </div>
   );
 }
