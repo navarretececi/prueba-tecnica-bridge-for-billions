@@ -5,12 +5,13 @@ import { AppContext } from "../../resultContext";
 import { search } from "../../services";
 
 const BtnSearch = () => {
-  const { input, setInput, setResult, setPagination } = React.useContext(AppContext);
+  const { input, setInput,result, setResult, setInputSearched, setPagination } = React.useContext(AppContext);
 
   const handlerInput = (e) => {
     setInput(e.target.value);
   };
 
+  console.log("result ", result)
   const handlerSearch = () => {
     //Search by title: Search by combined “Artist Name - Release Title” title field.
     let url = `https://api.discogs.com/database/search?title=${input}&per_page=16&page=1`;
@@ -18,6 +19,7 @@ const BtnSearch = () => {
       .then((data) => {
         setPagination(data.pagination);
         setResult(data.results);
+        setInputSearched(input);
         setInput("");
       })
       .catch((error) => {
