@@ -1,9 +1,17 @@
 import "./Card.css";
 import Btn from "./bnt/Btn";
-import { useState } from "react";
+import React from "react";
+import  { useEffect, useState } from "react";
+import { AppContext } from "../resultContext";
+
 
 const Card = (props) => {
   const [showInfo, setShowInfo] = useState(false);
+  const { result } = React.useContext(AppContext);
+
+  useEffect(() => {
+    setShowInfo(false)
+  }, [result])
 
   const handlerShowInfo = (id) => {
     let btn = document.getElementById(id);
@@ -14,12 +22,33 @@ const Card = (props) => {
     setShowInfo(!showInfo);
   };
 
+  const addToCollection =(id)=>{
+    console.log("agregado")
+
+   
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: "Discogs token=naLZrQwSiepVEgdldAJfdwVpLkSQCmxPGSUItYyq"
+      },
+    };
+    fetch (
+      //`/users/{username}/collection/folders/{folder_id}/releases/{release_id}`
+      `https://api.discogs.com/users/navarretececi/collection/folders/1/releases/${id}`,
+      requestOptions
+      )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("info add ", data);
+      })
+      .catch((error) => console.log(error));
+  }
+
   return (
     <div className="card">
       <div className="row">
         <div className="row">
-          <Btn btn_text="+" onClick={() => console.log("agregado")} />
-          <Btn btn_text="-" onClick={() => console.log("eliminado")} />
+          <Btn btn_text="+" onClick={() => addToCollection(props.id)} />
         </div>
         <Btn
           id={`btn_${props.id}`}
