@@ -8,7 +8,6 @@ import { AppContext } from "./resultContext";
 
 function App() {
   const { setInput, inputSearched, setInputSearched, setResult, setPagination } = React.useContext(AppContext);
-  console.log("searched",inputSearched)
 
   const handlerClear = () => {
     setResult();
@@ -19,6 +18,23 @@ function App() {
 
   const showCollection =()=>{
     console.log("mostrar colección")
+    
+    const request = {
+      method: 'GET',
+      headers: {
+        Authorization: "Discogs token=naLZrQwSiepVEgdldAJfdwVpLkSQCmxPGSUItYyq"
+      },
+    };
+    fetch (
+      //`/users/{username}/collection/folders/{folder_id}/releases`
+      `https://api.discogs.com/users/navarretececi/collection/folders/1/releases`,
+      request
+      )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("my collection ", data);
+      })
+      .catch((error) => console.log(error));
   }
 
   return (

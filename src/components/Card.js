@@ -23,10 +23,7 @@ const Card = (props) => {
   };
 
   const addToCollection =(id)=>{
-    console.log("agregado")
-
-   
-    const requestOptions = {
+    const request = {
       method: 'POST',
       headers: {
         Authorization: "Discogs token=naLZrQwSiepVEgdldAJfdwVpLkSQCmxPGSUItYyq"
@@ -35,7 +32,7 @@ const Card = (props) => {
     fetch (
       //`/users/{username}/collection/folders/{folder_id}/releases/{release_id}`
       `https://api.discogs.com/users/navarretececi/collection/folders/1/releases/${id}`,
-      requestOptions
+      request
       )
       .then((response) => response.json())
       .then((data) => {
