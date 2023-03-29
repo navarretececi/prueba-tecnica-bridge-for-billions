@@ -1,11 +1,19 @@
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser
-
 # prueba_tecnica-BridgeForBillions
 
-Frontend Developer Coding Challenge
+## local
+install dependencies
+    npm i
+
+copy .env.example to .env and add token
+    REACT_APP_API_TOKEN
+
+Runs the app in the development mode.
+    npm start
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser
+
+
+## Frontend Developer Coding Challenge
 
 Description
 This coding challenge consists of developing a client application for Discogs.
