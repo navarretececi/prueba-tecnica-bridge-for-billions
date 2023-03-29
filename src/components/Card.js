@@ -1,56 +1,45 @@
 import "./Card.css";
 import Btn from "./bnt/Btn";
 import React from "react";
-import  { useEffect, useState } from "react";
+import Popup from "./Popup";
+import { useEffect, useState } from "react";
 import { AppContext } from "../resultContext";
-
+import { addToCollection } from "../services";
 
 const Card = (props) => {
   const [showInfo, setShowInfo] = useState(false);
-  const { result } = React.useContext(AppContext);
+  const [added, setAdded] = useState(false);
+  const { result, inputSearched } = React.useContext(AppContext);
 
   useEffect(() => {
-    setShowInfo(false)
-  }, [result])
+    setShowInfo(false);
+  }, [result]);
 
-  const handlerShowInfo = (id) => {
-    let btn = document.getElementById(id);
-    
-    if (btn.innerText === "More info") {
-      btn.innerText = "Hide info";
-    } else btn.innerText = "More info";
-    setShowInfo(!showInfo);
-  };
-
-  const addToCollection =(id)=>{
-    const request = {
-      method: 'POST',
-      headers: {
-        Authorization: "Discogs token=naLZrQwSiepVEgdldAJfdwVpLkSQCmxPGSUItYyq"
-      },
-    };
-    fetch (
-      //`/users/{username}/collection/folders/{folder_id}/releases/{release_id}`
-      `https://api.discogs.com/users/navarretececi/collection/folders/1/releases/${id}`,
-      request
-      )
-      .then((response) => response.json())
+  const handlerAdd = (id) => {
+    addToCollection(id)
       .then((data) => {
         console.log("info add ", data);
+        setAdded(true);
+        setTimeout(() => {
+          setAdded(false);
+        }, 1000);
       })
-      .catch((error) => console.log(error));
-  }
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="card">
+      {added ? <Popup text="Added" /> : null}
       <div className="row">
         <div className="row">
-          <Btn btn_text="+" onClick={() => addToCollection(props.id)} />
+          {inputSearched === "Collection All" ?null: <Btn btn_text="+" onClick={() => handlerAdd(props.id)} />}
         </div>
         <Btn
           id={`btn_${props.id}`}
-          btn_text="More info"
-          onClick={() => handlerShowInfo(`btn_${props.id}`)}
+          btn_text={showInfo ? "Hide info" : "More info"}
+          onClick={() => setShowInfo(!showInfo)}
         />
       </div>
 
@@ -68,7 +57,7 @@ const Card = (props) => {
           {props.artist ? <h6>Artist: {props.artist}</h6> : null}
           {props.format ? (
             <h6>
-              Format:{" "}
+              Format:
               {props.format.map((e) => {
                 return e + " - ";
               })}
@@ -76,7 +65,7 @@ const Card = (props) => {
           ) : null}
           {props.genre ? (
             <h6>
-              Genre:{" "}
+              Genre:
               {props.genre.map((e) => {
                 return e + " - ";
               })}
@@ -84,7 +73,7 @@ const Card = (props) => {
           ) : null}
           {props.label ? (
             <h6>
-              Label:{" "}
+              Label:
               {props.label.map((e) => {
                 return e + " - ";
               })}
@@ -96,7 +85,7 @@ const Card = (props) => {
           {props.country ? <h6>Country: {props.country}</h6> : null}
           {props.style ? (
             <h6>
-              Style:{" "}
+              Style:
               {props.style.map((e) => {
                 return e + " - ";
               })}
