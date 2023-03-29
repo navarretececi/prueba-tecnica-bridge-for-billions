@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/prueba-tecnica-bridge-for-billions/static/css/main.3458d577.css",
+    "main.js": "/prueba-tecnica-bridge-for-billions/static/js/main.9bf30edd.js",
+    "static/js/787.5b5dfee8.chunk.js": "/prueba-tecnica-bridge-for-billions/static/js/787.5b5dfee8.chunk.js",
+    "index.html": "/prueba-tecnica-bridge-for-billions/index.html",
+    "main.3458d577.css.map": "/prueba-tecnica-bridge-for-billions/static/css/main.3458d577.css.map",
+    "main.9bf30edd.js.map": "/prueba-tecnica-bridge-for-billions/static/js/main.9bf30edd.js.map",
+    "787.5b5dfee8.chunk.js.map": "/prueba-tecnica-bridge-for-billions/static/js/787.5b5dfee8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3458d577.css",
+    "static/js/main.9bf30edd.js"
+  ]
+}
