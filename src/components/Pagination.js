@@ -24,9 +24,7 @@ const Pagination = () => {
     lastPage = pagination.urls.last;
   }
 
-  const handlerPagination = (url, type) => {
-    //TODO: this function is similar to handlerSearch and handlerShowCollection
-    //It should be unified, perhaps by passing it to the context.
+  const handlerPagination = (url) => {
     if (inputSearched === "Collection All") {
       showCollection(url)
         .then((data) => {

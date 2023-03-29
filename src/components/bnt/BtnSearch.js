@@ -8,7 +8,6 @@ const BtnSearch = () => {
   const {
     input,
     setInput,
-    result,
     setResult,
     setInputSearched,
     setPagination,

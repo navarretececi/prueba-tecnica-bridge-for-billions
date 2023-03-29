@@ -19,13 +19,9 @@ const Card = (props) => {
     addToCollection(id)
       .then((data) => {
         setAdded(true);
-        setTimeout(() => {
-          setAdded(false);
-        }, 1000);
+        setTimeout(() => {setAdded(false);}, 1000);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {console.log(error);});
   };
 
   return (
@@ -33,7 +29,9 @@ const Card = (props) => {
       {added ? <Popup text="Added" /> : null}
       <div className="row">
         <div className="row">
-          {inputSearched === "Collection All" ?null: <Btn btn_text="+" onClick={() => handlerAdd(props.id)} />}
+          {inputSearched === "Collection All" ? null : (
+            <Btn btn_text="+" onClick={() => handlerAdd(props.id)} />
+          )}
         </div>
         <Btn
           id={`btn_${props.id}`}
@@ -55,40 +53,20 @@ const Card = (props) => {
         <div>
           {props.artist ? <h6>Artist: {props.artist}</h6> : null}
           {props.format ? (
-            <h6>
-              Format:
-              {props.format.map((e) => {
-                return e + " - ";
-              })}
-            </h6>
+            <h6>Format: {props.format.map((e) => {return e + " - ";})}</h6>
           ) : null}
           {props.genre ? (
-            <h6>
-              Genre:
-              {props.genre.map((e) => {
-                return e + " - ";
-              })}
-            </h6>
+            <h6>Genre: {props.genre.map((e) => {return e + " - ";})}</h6>
           ) : null}
           {props.label ? (
-            <h6>
-              Label:
-              {props.label.map((e) => {
-                return e + " - ";
-              })}
-            </h6>
+            <h6>Label: {props.label.map((e) => {return e + " - ";})}</h6>
           ) : null}
           {props.type ? <h6>Type: {props.type}</h6> : null}
           {props.trackinfo ? <h6>Trackinfo: {props.trackinfo}</h6> : null}
           {props.year ? <h6>Year: {props.year}</h6> : null}
           {props.country ? <h6>Country: {props.country}</h6> : null}
           {props.style ? (
-            <h6>
-              Style:
-              {props.style.map((e) => {
-                return e + " - ";
-              })}
-            </h6>
+            <h6>Style: {props.style.map((e) => {return e + " - ";})}</h6>
           ) : null}
         </div>
       ) : null}

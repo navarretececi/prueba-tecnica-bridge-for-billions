@@ -37,14 +37,14 @@
 }
 
 @media (min-width: 470px) {
-  .nav{
+  .nav {
     min-height: auto;
   }
 
   .container_btns {
     height: 60px;
   }
-  
+
   .container_btns_search {
     flex-direction: row;
     justify-content: flex-end;
@@ -53,15 +53,15 @@
   }
 }
 
-  @media (min-width: 645px) {
-    .container_btns {
-      height: 60px;
-      flex-direction: row;
-      align-items: center;
-      height: auto;
-    }
-
-    .search_results {
-      height: 0;
-    }
+@media (min-width: 645px) {
+  .container_btns {
+    height: 60px;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
   }
+
+  .search_results {
+    height: 0;
+  }
+}
