@@ -1,10 +1,16 @@
 import React from "react";
 import Btn from "./bnt/Btn";
 import { AppContext } from "../resultContext";
-import { search } from "../services";
+import { search, showCollection } from "../services";
 
 const Pagination = () => {
-  const { setResult, pagination, setPagination } = React.useContext(AppContext);
+  const {
+    setResult,
+    pagination,
+    inputSearched,
+    setInputSearched,
+    setPagination,
+  } = React.useContext(AppContext);
 
   let firstPage;
   let nextPage;
@@ -18,17 +24,30 @@ const Pagination = () => {
     lastPage = pagination.urls.last;
   }
 
-  const handlerPagination = (url) => {
-    //TODO: this function is similar to handlerSearch.
+  const handlerPagination = (url, type) => {
+    //TODO: this function is similar to handlerSearch and handlerShowCollection
     //It should be unified, perhaps by passing it to the context.
-    search(url)
-      .then((data) => {
-        setPagination(data.pagination);
-        setResult(data.results);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (inputSearched === "Collection All") {
+      showCollection(url)
+        .then((data) => {
+          setPagination(data.pagination);
+          let collection_result = data.releases.map((e) => {
+            return e.basic_information;
+          });
+          setResult(collection_result);
+          setInputSearched("Collection All");
+        })
+        .catch((error) => console.log(error));
+    } else {
+      search(url)
+        .then((data) => {
+          setPagination(data.pagination);
+          setResult(data.results);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (

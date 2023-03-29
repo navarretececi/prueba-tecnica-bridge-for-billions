@@ -22,16 +22,16 @@ const Nav = () => {
   };
 
   const handlerShowCollection = () => {
-    showCollection()
+    let url = `https://api.discogs.com/users/navarretececi/collection/folders/1/releases?per_page=16`;
+
+    showCollection(url)
       .then((data) => {
-        console.log("my collection ", data);
         setPagination(data.pagination);
 
         let collection_result = data.releases.map((e) => {
           return e.basic_information;
         });
 
-        console.log(collection_result);
         setResult(collection_result);
         setInputSearched("Collection All");
       })

@@ -13,7 +13,6 @@ export const search = async (url) => {
   return response;
 };
 
-
 export const addToCollection = async (id) => {
   const request = {
     method: "POST",
@@ -35,23 +34,19 @@ export const addToCollection = async (id) => {
   return response;
 };
 
-
-export const showCollection = async () => {
+export const showCollection = async (url) => {
   const request = {
     method: "GET",
     headers: {
       Authorization: `Discogs token=${process.env.REACT_APP_API_TOKEN}`,
     },
   };
-  let response = await fetch(
-    `https://api.discogs.com/users/navarretececi/collection/folders/1/releases?per_page=16`,
-    request
-  )
+  let response = await fetch(url, request)
     .then((response) => response.json())
     .then((data) => {
-      return data
+      return data;
     })
     .catch((error) => console.log(error));
 
-    return response
+  return response;
 };
