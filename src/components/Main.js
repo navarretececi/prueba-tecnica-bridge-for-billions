@@ -15,7 +15,6 @@ const Main = () => {
         result.map((e, index) => {
           return (
             <Card
-              //The index is used instead of the ID because I found some repeated ids.
               key={index}
               id={e.id}
               title={e.title}

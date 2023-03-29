@@ -5,36 +5,3 @@
   min-height: 100vh;
   overflow-x: hidden;
 }
-
-.header {
-  text-align: initial;
-  width: 98%;
-  padding: 3%;
-}
-
-.principal_title {
-  font-size: 25px;
-}
-
-.no_mg {
-  margin: 0;
-}
-
-.footer {
-  width: -webkit-fill-available;
-  display: flex;
-  justify-content: flex-end;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.5% 2%;
-  background: var(--green);
-  color: var(--white);
-}
-
-@media (max-width: 750px) {
-  .title {
-    font-size: 20px;
-  }
-}

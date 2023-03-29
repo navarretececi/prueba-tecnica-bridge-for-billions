@@ -1,17 +1,13 @@
 import "./Layout.css";
-import Pagination from "./Pagination";
+import Footer from "./Footer";
+import Nav from "./Nav";
 
-const Layout = ({children}) => {
- return (
+const Layout = ({ children }) => {
+  return (
     <div className="layout">
-      <header className="header">
-        <h1 className="no_mg principal_title">Prueba técnica Bridge For Billions</h1>
-        <h6 className="no_mg">By: Cecilia Navarrete</h6>
-      </header>
+      <Nav />
       {children}
-      <footer className="footer">
-        <Pagination/>
-      </footer>
+      <Footer />
     </div>
   );
 };
