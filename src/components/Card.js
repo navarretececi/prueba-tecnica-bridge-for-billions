@@ -46,7 +46,7 @@ const Card = (props) => {
         <img
           className="img"
           src={props.url ? props.url : "./music.svg"}
-          alt="photo disk"
+          alt={props.title}
         />
       </div>
 
