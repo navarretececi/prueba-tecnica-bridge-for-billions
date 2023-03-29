@@ -18,7 +18,6 @@ const Card = (props) => {
   const handlerAdd = (id) => {
     addToCollection(id)
       .then((data) => {
-        console.log("info add ", data);
         setAdded(true);
         setTimeout(() => {
           setAdded(false);

@@ -18,7 +18,6 @@ const BtnSearch = () => {
     setInput(e.target.value);
   };
 
-  console.log("result ", result);
   const handlerSearch = () => {
     //Search by title: Search by combined “Artist Name - Release Title” title field.
     //Filter by type=release because we only need the artist or album(releases)
