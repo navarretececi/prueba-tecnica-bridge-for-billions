@@ -6,23 +6,45 @@ import { useEffect, useState } from "react";
 import { AppContext } from "../resultContext";
 import { addToCollection } from "../services";
 import { limitCharacters } from "../utils/functions";
+import FullPopup from "./FullPopup";
 
 const Card = (props) => {
-  const [showInfo, setShowInfo] = useState(false);
   const [added, setAdded] = useState(false);
   const { result, inputSearched } = React.useContext(AppContext);
+  const [diskInfo, setDiskInfo] = useState({});
+
+  const handlerInfo = () => {
+    setDiskInfo({
+      url: props.url,
+      alt: props.alt,
+      title: props.title,
+      artist: props.artist,
+      format: props.format,
+      genre: props.genre,
+      label: props.label,
+      type: props.type,
+      trackinfo: props.trackinfo,
+      year: props.year,
+      country: props.country,
+      style: props.style,
+    });
+  };
 
   useEffect(() => {
-    setShowInfo(false);
+    setDiskInfo({});
   }, [result]);
 
   const handlerAdd = (id) => {
     addToCollection(id)
       .then((data) => {
         setAdded(true);
-        setTimeout(() => {setAdded(false);}, 1000);
+        setTimeout(() => {
+          setAdded(false);
+        }, 1000);
       })
-      .catch((error) => {console.log(error);});
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -31,13 +53,16 @@ const Card = (props) => {
       <div className="row">
         <div className="row">
           {inputSearched === "Collection All" ? null : (
-            <Btn btn_text="+" onClick={() => handlerAdd(props.id)} />
+            <Btn
+              btn_text="Add to collection"
+              onClick={() => handlerAdd(props.id)}
+            />
           )}
         </div>
         <Btn
           id={`btn_${props.id}`}
-          btn_text={showInfo ? "Hide info" : "More info"}
-          onClick={() => setShowInfo(!showInfo)}
+          btn_text="More Info"
+          onClick={() => handlerInfo()}
         />
       </div>
 
@@ -50,19 +75,8 @@ const Card = (props) => {
         />
       </div>
 
-      {showInfo ? (
-        <div>
-          <h6>Title: {props.title}</h6>
-          <h6>Artist: {props.artist}</h6>
-          <h6>Format: {props.format.map((e) => {return e + " - ";})}</h6>
-          <h6>Genre: {props.genre.map((e) => {return e + " - ";})}</h6>
-          <h6>Label: {props.label.map((e) => {return e + " - ";})}</h6>
-          <h6>Type: {props.type}</h6>
-          <h6>Trackinfo: {props.trackinfo}</h6>
-          <h6>Year: {props.year}</h6>
-          <h6>Country: {props.country}</h6>
-          <h6>Style: {props.style.map((e) => {return e + " - ";})}</h6>
-        </div>
+      {Object.keys(diskInfo).length > 0 ? (
+        <FullPopup data={diskInfo} onClick={() => setDiskInfo({})} />
       ) : null}
     </div>
   );

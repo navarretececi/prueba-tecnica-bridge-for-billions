@@ -8,7 +8,6 @@ export const AppProvider = ({ children }) => {
   const [inputSearched, setInputSearched] = useState("");
   const [pagination, setPagination] = useState({});
   const [result, setResult] = useState();
-  const [showInfo, setShowInfo] = useState(false);
 
   return (
     <AppContext.Provider
@@ -21,8 +20,6 @@ export const AppProvider = ({ children }) => {
         setPagination,
         result,
         setResult,
-        showInfo,
-        setShowInfo,
       }}
     >
       {children}
