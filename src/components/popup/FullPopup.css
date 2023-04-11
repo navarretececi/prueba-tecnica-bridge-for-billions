@@ -42,3 +42,21 @@
   background: var(--lightGrey);
   cursor: pointer;
 }
+
+.pink_text{
+  color: var(--darkPink);
+}
+
+@media (min-width: 540px) {
+  .container_release_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .mg_left15{
+    margin-left: 15px;
+  }
+}
+
