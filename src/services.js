@@ -50,3 +50,23 @@ export const showCollection = async (url) => {
 
   return response;
 };
+
+export const get_release_by_id = async (id) => {
+  const request = {
+    method: "GET",
+    headers: {
+      Authorization: `Discogs token=${process.env.REACT_APP_API_TOKEN}`,
+    },
+  };
+
+  let response = await fetch(
+    `https://api.discogs.com/releases/${id}`,request
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => console.log(error));
+
+  return response;
+};
