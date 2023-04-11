@@ -22,7 +22,7 @@ const Nav = () => {
   };
 
   const handlerShowCollection = () => {
-    let url = `https://api.discogs.com/users/navarretececi/collection/folders/1/releases?per_page=16`;
+    let url = `https://api.discogs.com/users/navarretececi/collection/folders/1/releases?sort=added&sort_order=desc&per_page=16`;
 
     showCollection(url)
       .then((data) => {
