@@ -19,15 +19,6 @@ const Main = () => {
               id={e.id}
               title={e.title}
               url={e.thumb}
-              artist={e.artist}
-              format={e.format}
-              genre={e.genre}
-              label={e.label}
-              type={e.type}
-              trackinfo={e.trackinfo}
-              year={e.year}
-              country={e.country}
-              style={e.style}
             />
           );
         })

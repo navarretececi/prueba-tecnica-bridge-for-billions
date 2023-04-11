@@ -1,46 +1,42 @@
 import "./Card.css";
 import Btn from "./bnt/Btn";
 import React from "react";
-import Popup from "./Popup";
+import Popup from "./popup/Popup";
 import { useEffect, useState } from "react";
 import { AppContext } from "../resultContext";
-import { addToCollection } from "../services";
+import { addToCollection, get_release_by_id } from "../services";
 import { limitCharacters } from "../utils/functions";
-import FullPopup from "./FullPopup";
+import FullPopup from "./popup/FullPopup";
 
 const Card = (props) => {
   const [added, setAdded] = useState(false);
   const { result, inputSearched } = React.useContext(AppContext);
-  const [diskInfo, setDiskInfo] = useState({});
-
-  const handlerInfo = () => {
-    setDiskInfo({
-      url: props.url,
-      alt: props.alt,
-      title: props.title,
-      artist: props.artist,
-      format: props.format,
-      genre: props.genre,
-      label: props.label,
-      type: props.type,
-      trackinfo: props.trackinfo,
-      year: props.year,
-      country: props.country,
-      style: props.style,
-    });
-  };
+  const [releaseInfo, setReleaseInfo] = useState({});
 
   useEffect(() => {
-    setDiskInfo({});
+    setReleaseInfo({});
   }, [result]);
 
   const handlerAdd = (id) => {
+    //The API allows you to add duplicate releases to the collection, 
+    //so it is not limited to this service.
     addToCollection(id)
       .then((data) => {
         setAdded(true);
         setTimeout(() => {
           setAdded(false);
         }, 1000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handlerGetReleaseById = (id) => {
+    //I search the release by id and get all the information.
+    get_release_by_id(id)
+      .then((data) => {
+        setReleaseInfo(data)
       })
       .catch((error) => {
         console.log(error);
@@ -54,7 +50,7 @@ const Card = (props) => {
         <div className="row">
           {inputSearched === "Collection All" ? null : (
             <Btn
-              btn_text="Add to collection"
+              btn_text="Add"
               onClick={() => handlerAdd(props.id)}
             />
           )}
@@ -62,7 +58,7 @@ const Card = (props) => {
         <Btn
           id={`btn_${props.id}`}
           btn_text="More Info"
-          onClick={() => handlerInfo()}
+          onClick={() => handlerGetReleaseById(props.id)}
         />
       </div>
 
@@ -75,8 +71,8 @@ const Card = (props) => {
         />
       </div>
 
-      {Object.keys(diskInfo).length > 0 ? (
-        <FullPopup data={diskInfo} onClick={() => setDiskInfo({})} />
+      {Object.keys(releaseInfo).length > 0 ? (
+        <FullPopup data={releaseInfo} onClick={() => setReleaseInfo({})} />
       ) : null}
     </div>
   );
