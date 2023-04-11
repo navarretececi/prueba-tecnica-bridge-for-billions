@@ -31,7 +31,7 @@ const Nav = () => {
         let collection_result = data.releases.map((e) => {
           return e.basic_information;
         });
-
+        
         setResult(collection_result);
         setInputSearched("Collection All");
       })
