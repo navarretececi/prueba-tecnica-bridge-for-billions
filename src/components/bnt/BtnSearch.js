@@ -20,7 +20,7 @@ const BtnSearch = () => {
   const handlerSearch = () => {
     //Search by title: Search by combined “Artist Name - Release Title” title field.
     //Filter by type=release because we only need the artist or album(releases)
-    let url = `https://api.discogs.com/database/search?title=${input}&type=release&per_page=16`;
+    let url = `https://api.discogs.com/database/search?title=${input}&type=release&per_page=20`;
 
     search(url)
       .then((data) => {
